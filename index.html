@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ram Prakash · Software Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbfbf9;
+    --panel:#ffffff;
+    --panel-border:#e3e1da;
+    --text:#1b2024;
+    --muted:#6b7280;
+    --accent:#1d4ed8;
+    --accent-dim:#93a8e8;
+    --amber:#b5832c;
+    --line:#e8e6df;
+    --radius:10px;
+    --mono:'JetBrains Mono', monospace;
+    --disp:'Space Grotesk', sans-serif;
+    --body:'Inter', sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--body);
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:var(--accent);text-decoration:none;}
+  ::selection{background:var(--accent-dim);color:#fff;}
+
+  /* scrollbar */
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--bg);}
+  ::-webkit-scrollbar-thumb{background:#d8d6cd;border-radius:6px;}
+
+  .wrap{max-width:980px;margin:0 auto;padding:0 28px;}
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(251,251,249,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .navwrap{
+    max-width:980px;margin:0 auto;padding:14px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:0.5px;}
+  .logo .dim{color:var(--muted);}
+  .navlinks{display:flex;gap:28px;font-family:var(--mono);font-size:13px;}
+  .navlinks a{color:var(--muted);transition:color .2s;}
+  .navlinks a:hover{color:var(--accent);}
+  .navlinks .num{color:var(--accent-dim);margin-right:4px;}
+  @media (max-width:640px){ .navlinks{display:none;} }
+
+  /* ===== HERO ===== */
+  header.hero{
+    padding:160px 0 90px;
+    position:relative;
+  }
+  .eyebrow{
+    font-family:var(--mono);font-size:13px;color:var(--amber);
+    display:flex;align-items:center;gap:10px;margin-bottom:22px;
+  }
+  .dot{width:7px;height:7px;border-radius:50%;background:var(--amber);
+    box-shadow:0 0 0 0 rgba(181,131,44,0.5);
+    animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(181,131,44,0.4);}
+    70%{box-shadow:0 0 0 8px rgba(181,131,44,0);}
+    100%{box-shadow:0 0 0 0 rgba(181,131,44,0);}
+  }
+  h1.name{
+    font-family:var(--disp);
+    font-size:clamp(40px,7vw,76px);
+    font-weight:700;
+    line-height:1.02;
+    letter-spacing:-1.5px;
+    color:#13171c;
+  }
+  h1.name span{color:var(--accent);}
+  .role-line{
+    font-family:var(--mono);
+    font-size:clamp(14px,2vw,18px);
+    color:var(--muted);
+    margin-top:18px;
+    max-width:620px;
+  }
+  .role-line .pipe{color:var(--accent-dim);margin:0 8px;}
+  .hero-desc{
+    margin-top:26px;
+    max-width:560px;
+    color:#4a5158;
+    font-size:16px;
+  }
+  .hero-cta{
+    margin-top:38px;
+    display:flex;gap:14px;flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--mono);
+    font-size:13.5px;
+    padding:11px 20px;
+    border-radius:6px;
+    border:1px solid var(--line);
+    color:var(--text);
+    transition:.2s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn.primary{background:var(--accent);color:#ffffff;border:none;font-weight:600;}
+  .btn.primary:hover{background:#1640b0;}
+  .btn:not(.primary):hover{border-color:var(--accent);color:var(--accent);}
+
+  /* terminal card */
+  .term{
+    margin-top:56px;
+    background:var(--panel);
+    border:1px solid var(--panel-border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    max-width:560px;
+    box-shadow:0 20px 50px -25px rgba(20,30,50,0.18);
+  }
+  .term-bar{
+    display:flex;align-items:center;gap:7px;
+    padding:10px 14px;
+    border-bottom:1px solid var(--panel-border);
+    background:#f2f1ec;
+  }
+  .term-bar span{width:10px;height:10px;border-radius:50%;display:inline-block;}
+  .term-bar .r{background:#ff5f56;} .term-bar .y{background:#ffbd2e;} .term-bar .g{background:#27c93f;}
+  .term-title{margin-left:8px;font-family:var(--mono);font-size:12px;color:var(--muted);}
+  .term-body{padding:18px 20px;font-family:var(--mono);font-size:13.5px;color:#4a5158;}
+  .term-body .k{color:#c792ea;} .term-body .s{color:var(--accent);} .term-body .c{color:var(--muted);}
+  .term-body div{margin-bottom:4px;}
+
+  /* ===== SECTION GENERIC ===== */
+  section{padding:90px 0;border-top:1px solid var(--line);}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:40px;}
+  .sec-num{font-family:var(--mono);color:var(--accent-dim);font-size:14px;}
+  .sec-title{font-family:var(--disp);font-size:clamp(26px,4vw,34px);font-weight:600;color:#13171c;}
+  .sec-rule{flex:1;height:1px;background:var(--line);}
+
+  /* ABOUT */
+  .about-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:50px;}
+  @media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{color:#4a5158;margin-bottom:16px;font-size:15.5px;}
+  .about-text strong{color:var(--text);}
+  .traits{display:flex;flex-direction:column;gap:14px;margin-top:6px;}
+  .trait{
+    border:1px solid var(--panel-border);background:var(--panel);
+    border-radius:8px;padding:14px 16px;
+  }
+  .trait .t-arrow{color:var(--accent);font-family:var(--mono);margin-right:8px;}
+  .trait .t-text{font-size:14px;color:#4a5158;}
+  .fact-list{list-style:none;margin-top:18px;font-family:var(--mono);font-size:13px;color:var(--muted);}
+  .fact-list li{margin-bottom:8px;display:flex;gap:8px;}
+  .fact-list .f-key{color:var(--amber);min-width:80px;}
+
+  /* SKILLS */
+  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  @media(max-width:760px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:480px){.skills-grid{grid-template-columns:1fr;}}
+  .skill-card{
+    background:var(--panel);border:1px solid var(--panel-border);
+    border-radius:var(--radius);padding:20px;
+  }
+  .skill-card h4{
+    font-family:var(--mono);font-size:13px;color:var(--amber);
+    margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px;
+  }
+  .chips{display:flex;flex-wrap:wrap;gap:7px;}
+  .chip{
+    font-family:var(--mono);font-size:12px;color:#2c333a;
+    background:#f3f2ed;border:1px solid var(--panel-border);
+    padding:5px 10px;border-radius:5px;
+  }
+
+  /* PROJECTS */
+  .project{
+    border:1px solid var(--panel-border);background:var(--panel);
+    border-radius:var(--radius);padding:26px 26px 24px;margin-bottom:22px;
+    position:relative;
+  }
+  .project:hover{border-color:var(--accent-dim);}
+  .project-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap;}
+  .project h3{font-family:var(--disp);font-size:21px;color:#13171c;font-weight:600;}
+  .project .ptag{font-family:var(--mono);font-size:11.5px;color:var(--accent);border:1px solid var(--accent-dim);padding:3px 9px;border-radius:20px;white-space:nowrap;}
+  .project p{color:#4a5158;margin-top:10px;font-size:14.5px;}
+  .project ul{margin-top:10px;padding-left:18px;color:#4a5158;font-size:14px;}
+  .project ul li{margin-bottom:5px;}
+  .project-links{margin-top:14px;display:flex;gap:16px;font-family:var(--mono);font-size:12.5px;}
+
+  /* EXPERIENCE / TIMELINE */
+  .timeline{position:relative;padding-left:26px;}
+  .timeline::before{content:'';position:absolute;left:6px;top:6px;bottom:6px;width:1px;background:var(--line);}
+  .t-item{position:relative;margin-bottom:34px;}
+  .t-item::before{content:'';position:absolute;left:-26px;top:5px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--accent);}
+  .t-role{font-family:var(--disp);font-size:18px;color:#13171c;font-weight:600;}
+  .t-org{font-family:var(--mono);font-size:13px;color:var(--accent);margin-top:2px;}
+  .t-date{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:2px;}
+  .t-desc{margin-top:10px;color:#4a5158;font-size:14.5px;}
+
+  /* EDUCATION + CERTS */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:50px;}
+  @media(max-width:760px){.twocol{grid-template-columns:1fr;gap:40px;}}
+  .edu-item{margin-bottom:22px;}
+  .edu-item h4{font-family:var(--disp);font-size:16.5px;color:#13171c;}
+  .edu-item .org{font-family:var(--mono);font-size:13px;color:var(--accent);margin-top:3px;}
+  .edu-item .meta{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:3px;}
+  .cert{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:11px 0;font-size:14px;}
+  .cert .c-name{color:#1b2024;}
+  .cert .c-org{font-family:var(--mono);font-size:12px;color:var(--muted);}
+
+  /* CONTACT */
+  .contact-box{
+    background:var(--panel);border:1px solid var(--panel-border);
+    border-radius:var(--radius);padding:50px 40px;text-align:center;
+  }
+  .contact-box h2{font-family:var(--disp);font-size:clamp(26px,5vw,40px);color:#13171c;margin-bottom:14px;}
+  .contact-box p{color:var(--muted);max-width:480px;margin:0 auto 30px;font-size:15px;}
+  .contact-links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;}
+
+  footer{
+    text-align:center;padding:36px 0 50px;
+    font-family:var(--mono);font-size:12px;color:var(--muted);
+  }
+
+  .fade-in{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+  .fade-in.show{opacity:1;transform:none;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="navwrap">
+    <div class="logo">Ram</span>Prakash</div>
+    <div class="navlinks">
+      <a href="#about"><span class="num">01.</span>About</a>
+      <a href="#skills"><span class="num">02.</span>Skills</a>
+      <a href="#projects"><span class="num">03.</span>Projects</a>
+      <a href="#experience"><span class="num">04.</span>Experience</a>
+      <a href="#education"><span class="num">05.</span>Education</a>
+      <a href="#contact"><span class="num">06.</span>Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow"><span class="dot"></span>OPEN TO WORK · IMMEDIATE JOINER</div>
+    <h1 class="name">Ram Prakash</h1>
+    <div class="role-line">MCA Final Year<span class="pipe">|</span>Java &amp; Python Developer<span class="pipe">|</span>Full-Stack (React/Node)<span class="pipe">|</span>Data Analytics</div>
+    <p class="hero-desc">I build full-stack applications, analyze real datasets, and write backend services across Java, Python, and Node.js. I pick up new tools fast, think in systems, and ship — every project ends in a working repo or a live demo.</p>
+    <div class="hero-cta">
+      <a class="btn primary" href="mailto:ramprakashofficial4@gmail.com">Email Me →</a>
+      <a class="btn" href="https://github.com/Rockyprakash4" target="_blank">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/ram-prakash4" target="_blank">LinkedIn</a>
+    </div>
+
+    <div class="term">
+      <div class="term-bar">
+        <span class="r"></span><span class="y"></span><span class="g"></span>
+        <span class="term-title">ram_prakash.json</span>
+      </div>
+      <div class="term-body">
+        <div><span class="k">const</span> developer = {</div>
+        <div>&nbsp;&nbsp;name: <span class="s">"Ram Prakash"</span>,</div>
+        <div>&nbsp;&nbsp;role: <span class="s">"SDE Fresher"</span>,</div>
+        <div>&nbsp;&nbsp;stack: [<span class="s">"Java"</span>, <span class="s">"Python"</span>, <span class="s">"React"</span>, <span class="s">"Node.js"</span>],</div>
+        <div>&nbsp;&nbsp;status: <span class="s">"Immediate Joiner"</span></div>
+        <div>};</div>
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <div class="sec-head"><span class="sec-num">01.</span><span class="sec-title">About</span><div class="sec-rule"></div></div>
+    <div class="about-grid">
+      <div class="about-text fade-in">
+        <p>I'm a <strong>final-year MCA student</strong> with a Bachelor's in Computer Applications, and I've spent the last two years doing more than attending classes. I've built full-stack applications, analyzed real datasets, and written backend services across <strong>Java, Python, and Node.js</strong>.</p>
+        <p>My work spans both sides of the stack — on the development side: REST APIs with Spring Boot / Express, React frontends, and MySQL/MongoDB databases. On the analytics side: Python (Pandas, NumPy), Power BI dashboards, and SQL queries that turn raw data into decisions.</p>
+        <p>Currently targeting roles in <strong>Software Development, Full-Stack Engineering, and Data Analytics</strong> — with strong interest in product-based and FinTech companies.</p>
+        <div class="traits">
+          <div class="trait"><span class="t-arrow">→</span><span class="t-text">I pick up new tools fast — Django, Express.js, and Power BI were all self-taught alongside coursework.</span></div>
+          <div class="trait"><span class="t-arrow">→</span><span class="t-text">I think in systems — not just code, but how data flows, where bottlenecks form, and what the business needs.</span></div>
+          <div class="trait"><span class="t-arrow">→</span><span class="t-text">I ship — every project has a GitHub repo, a working demo, or a published dashboard.</span></div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <ul class="fact-list">
+          <li><span class="f-key">LOCATION</span> Coimbatore / Tiruchirappalli, TN, India</li>
+          <li><span class="f-key">EDUCATION</span> MCA, Rathinam Technical Campus (2025–27)</li>
+          <li><span class="f-key">PATENT</span> ML-Based Personalized Learning Device (Filed)</li>
+          <li><span class="f-key">LEADERSHIP</span> VP, MCA Dept. Association — led a team of 25</li>
+          <li><span class="f-key">PAPER</span> Presented at 3rd Intl. Conf. on Intelligent Computer Systems (ICICS) 2025</li>
+          <li><span class="f-key">AVAILABILITY</span> Immediate Joiner — Remote / Hybrid / On-site</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="sec-head"><span class="sec-num">02.</span><span class="sec-title">Skills</span><div class="sec-rule"></div></div>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <h4>Languages</h4>
+        <div class="chips">
+          <span class="chip">Java</span><span class="chip">Python</span><span class="chip">C++</span>
+          <span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <h4>Frameworks</h4>
+        <div class="chips">
+          <span class="chip">React.js</span><span class="chip">Node.js</span><span class="chip">Express.js</span>
+          <span class="chip">Django</span><span class="chip">Bootstrap</span><span class="chip">Spring Boot</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <h4>Data &amp; Analytics</h4>
+        <div class="chips">
+          <span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">Power BI</span>
+          <span class="chip">MySQL</span><span class="chip">MongoDB</span><span class="chip">Data Visualization</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <h4>Core CS</h4>
+        <div class="chips">
+          <span class="chip">DSA</span><span class="chip">OOP</span><span class="chip">DBMS</span>
+          <span class="chip">Operating Systems</span><span class="chip">Computer Networks</span><span class="chip">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <h4>Tools / Platforms</h4>
+        <div class="chips">
+          <span class="chip">VS Code</span><span class="chip">Git &amp; GitHub</span><span class="chip">IntelliJ / Eclipse</span>
+          <span class="chip">Postman</span><span class="chip">Jupyter</span><span class="chip">Linux</span>
+        </div>
+      </div>
+      <div class="skill-card fade-in">
+        <h4>Beyond Code</h4>
+        <div class="chips">
+          <span class="chip">Team Leadership</span><span class="chip">Problem Solving</span><span class="chip">Critical Thinking</span>
+          <span class="chip">Technical Writing</span><span class="chip">Adaptability</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="sec-head"><span class="sec-num">03.</span><span class="sec-title">Projects</span><div class="sec-rule"></div></div>
+
+    <div class="project fade-in">
+      <div class="project-top">
+        <h3>Social Ads Management System</h3>
+        <span class="ptag">Full-Stack · Ad-Tech</span>
+      </div>
+      <p>A responsive, full-stack advertising platform that lets businesses create, schedule, and preview ads for social media — built with a complete admin and governance module.</p>
+      <ul>
+        <li>Designed UI components for ad creation, scheduling, and live preview.</li>
+        <li>Built a secure enterprise-style dashboard with role-based access (Advertiser / Admin).</li>
+        <li>Focused on a clean, user-friendly interface from sign-in to campaign control.</li>
+      </ul>
+      <div class="project-links">
+        <a href="#">↗ Live Demo</a>
+        <a href="https://github.com/Rockyprakash4" target="_blank">↗ Source on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project fade-in">
+      <div class="project-top">
+        <h3>IoT-Based Solar-Powered Smart Backpack</h3>
+        <span class="ptag">IoT · Hardware · Research</span>
+      </div>
+      <p>A sustainable, portable charging solution integrating solar panels, battery storage, and real-time sensor monitoring — led as Project Lead for the BCA final-year project.</p>
+      <ul>
+        <li>Engineered an IoT-enabled backpack combining solar charging with live sensor data.</li>
+        <li>Presented as a research paper at the 3rd International Conference on Intelligent Computer Systems (ICICS), 2025.</li>
+      </ul>
+      <div class="project-links">
+        <a href=" https://drive.google.com/file/d/1kV8rSFZfQAoatOqkwuy5he60l3WcNyc1/view?usp=drive_link">↗ Paper Presentation</a>
+      </div>
+    </div>
+
+    <div class="project fade-in">
+      <div class="project-top">
+        <h3>ML-Based Personalized Learning Device</h3>
+        <span class="ptag">Patent Filed · Machine Learning</span>
+      </div>
+      <p>An intelligent system for adaptive, personalized, and effective learning — designed with data acquisition, profiling, and recommendation engine modules.</p>
+      <ul>
+        <li>Architected a multi-module system: data acquisition → learner profiling → ML recommendation engine → adaptive learning interface.</li>
+        <li>Patent application filed for the device's architecture and methodology.</li>
+      </ul>
+      <div class="project-links">
+        <a href=" https://github.com/Rockyprakash4/ml-personalized-learning-system">↗ pattern apply</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="sec-head"><span class="sec-num">04.</span><span class="sec-title">Experience &amp; Leadership</span><div class="sec-rule"></div></div>
+    <div class="timeline">
+      <div class="t-item fade-in">
+        <div class="t-role">Vice President</div>
+        <div class="t-org">MCA Department Association — Rathinam Technical Campus</div>
+        <div class="t-date">Feb 2026 – Present · 5 mos · Coimbatore, India</div>
+        <div class="t-desc">Led a team of 25 to plan and execute 8+ technical, cultural, and academic events across the 2025–26 academic year, strengthening team leadership, organization, and stakeholder coordination skills.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="sec-head"><span class="sec-num">05.</span><span class="sec-title">Education &amp; Certifications</span><div class="sec-rule"></div></div>
+    <div class="twocol">
+      <div class="fade-in">
+        <div class="edu-item">
+          <h4>Master of Computer Applications (MCA)</h4>
+          <div class="org">Rathinam Technical Campus, Coimbatore</div>
+          <div class="meta">Sept 2025 – May 2027 (Expected)</div>
+        </div>
+        <div class="edu-item">
+          <h4>Bachelor of Computer Applications (BCA)</h4>
+          <div class="org">Bishop Heber College, Tiruchirappalli</div>
+          <div class="meta">2022 – 2025 · CGPA: 7.08/10 (65.51%)</div>
+        </div>
+        <div class="edu-item">
+          <h4>Senior Secondary (XII), Science</h4>
+          <div class="org">Chellammal Matriculation Higher Secondary School</div>
+          <div class="meta">Tamil Nadu State Board</div>
+        </div>
+      </div>
+      <div class="fade-in">
+        <div class="cert"><span class="c-name">AWS Scholars — Build Your First AI Productivity App</span><span class="c-org">Udacity, 2026</span></div>
+        <div class="cert"><span class="c-name">Python for Data Science</span><span class="c-org">Cognitive Class (IBM), 2025</span></div>
+        <div class="cert"><span class="c-name">Data Science &amp; Analytics</span><span class="c-org">HP, 2024</span></div>
+        <div class="cert"><span class="c-name">Data Analytics &amp; Visualization Job Simulation</span><span class="c-org">Accenture / Forage, 2024</span></div>
+        <div class="cert"><span class="c-name">Artificial Intelligence</span><span class="c-org">Corizo Edutech, 2024</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="sec-head"><span class="sec-num">06.</span><span class="sec-title">Contact</span><div class="sec-rule"></div></div>
+    <div class="contact-box fade-in">
+      <h2>Let's build something impactful.</h2>
+      <p>I'm actively looking for SDE / Full-Stack / Data Analyst roles — open to remote, hybrid, or on-site across India. Immediate joiner.</p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:ramprakashofficial4@gmail.com">ramprakashofficial4@gmail.com</a>
+        <a class="btn" href="tel:+919363472737">+91 93634 72737</a>
+        <a class="btn" href="https://github.com/Rockyprakash4" target="_blank">GitHub ↗</a>
+        <a class="btn" href="https://www.linkedin.com/in/ram-prakash4" target="_blank">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>Designed &amp; built by Ram Prakash · Coimbatore, India</footer>
+</div>
+
+<script>
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); } });
+  },{threshold:0.15});
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
